@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  blocks:
+    build:
+      context: .
+      dockerfile: Dockerfile.blocks
+    ports:
+      - "8080:8080"
