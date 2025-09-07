@@ -23,7 +23,7 @@ type BlockRequest struct {
 	Transactions []Transaction `json:"transactions"`
 }
 
-func getCurrentPriceHandler(w http.ResponseWriter, r *http.Request) {
+func getCurrentPriceHandler(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	randomGasPrice := rand.IntN(1000) // random gasPrice up to 999
