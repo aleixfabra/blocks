@@ -86,7 +86,7 @@ func simulateBlockHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	resp := map[string]interface{}{
-		"transactions":          transactions,
+		"transactions":          transactions.Transactions,
 		"totalGas":              totalGas,
 		"totalFees":             totalFees,
 		"gasLimit":              gasLimit,
