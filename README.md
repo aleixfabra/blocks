@@ -111,7 +111,7 @@ services:
   blocks:
     build:
       context: .
-      dockerfile: Dockerfile.blocks
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
   your-service:
