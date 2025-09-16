@@ -1,5 +1,36 @@
 **Backend Test**
 
+**Local development**
+
+```bash
+make up
+```
+
+**Clarifications**
+
+First of all, I had almost no experience with Go before this trail (I had only used it for literally two days to make a mini prototype). Even so, I decided to do it with Go to learn and practice.
+It is quite likely that there are things to improve, such as the unlock process.
+
+
+- The `blocks` and `mempool` microservices have been separated into their corresponding folders, as they have different responsibilities
+- Some improvements have been made to the original `blocks` microservice (see commits history)
+- The `mempool` microservice:
+  - Collects transactions, fetches the current gas price and fee for each transaction, and submits them in batches to the `blocks` microservice
+  - Exposes a REST API to accept transactions (e.g., `POST /submitTransactions`). This endpoint try to be as fast as possible, so it just stores the transactions in memory and returns a response
+  - Processes transactions sequentially, ensuring that no additional transactions are submitted while a batch is being processed
+  - Prioritizes transactions to maximize total fees collected
+- A `Makefile` file has been created to help local development
+
+**TODOs (with more time)**
+- Add unit tests
+- Add an Interface in the `client` (for testing and for decoupling from the concrete implementation)
+- Save unsubmitted transactions to avoid endlessly retrying (and apply an alternative strategy to submit them)
+- The `TransactionsToSubmit` and `TransactionsToProcess` could store addresses instead of the whole transaction to save memory
+- Investigate how to handle panics
+- Delegate `Transactions` sorted logic to a database (e.g. Redis with sorted sets)
+
+---
+
 **Objective:**
 The purpose of this test is to evaluate your ability to design and implement a backend service that efficiently manages and submits transactions to a simulated blockchain while maximizing profitability.
 
